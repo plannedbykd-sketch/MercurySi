@@ -1,0 +1,4 @@
+module CLiquidKernel {
+    header "liquid_kernel.h"
+    export *
+}

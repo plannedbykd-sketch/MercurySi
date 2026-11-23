@@ -1,0 +1,6 @@
+{
+  "name": "LiquidOS Hybrid Recovery & Build Workbench",
+  "description": "Engineering recovery workspace, Rust/Android/iOS hybrid FFI artifacts, PaR v1.0 validator, and canonical SHA-256 ledger workbench for LiquidOS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

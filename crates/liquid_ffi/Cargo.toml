@@ -1,0 +1,27 @@
+[package]
+name = "liquid_ffi"
+version = "1.4.0"
+edition = "2021"
+
+[lib]
+name = "liquid_kernel"
+crate-type = ["cdylib", "staticlib", "rlib"]
+
+[features]
+default = []
+android-jni = ["dep:jni"]
+
+[dependencies]
+hex = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+jni = { version = "0.21", optional = true }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = "symbols"
+# panic = "unwind" keeps catch_unwind functional across Swift/JNI FFI boundaries.
+panic = "unwind"

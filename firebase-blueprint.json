@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private user account profile and theme preference stored per authenticated user.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID matching the document ID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name shown in the workbench account menu.",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "email": {
+          "type": "string",
+          "description": "Verified or provider-supplied email address (empty string if hidden by Apple private relay).",
+          "maxLength": 160
+        },
+        "providerId": {
+          "type": "string",
+          "description": "Primary authentication provider identifier.",
+          "enum": ["password", "google.com", "apple.com"]
+        },
+        "themePreference": {
+          "type": "string",
+          "description": "Synced appearance mode preference.",
+          "enum": ["system", "light", "dark"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when profile was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when profile was last updated."
+        }
+      },
+      "required": ["uid", "displayName", "providerId", "themePreference", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Owner-isolated user profile and synced theme preference document."
+    }
+  }
+}
